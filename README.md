@@ -6,8 +6,7 @@ into a Discord channel of your choosing.
 
 Information on how to acquire your own Discord bot token can be found [HERE](https://discordapp.com/developers/docs/intro)
 
-Once you have your token it must be entered in settings.py with 'Bot' in front of it.
-Ex: 'Bot NgA5MTQ3YnY2ORc0NDE1MTBz.F9Nkww.j3k4YAGtb1-bD7Om9zXYr6wsmVj'
+Once you have your token it must be entered in settings.py with 'Bot' in front of it.                                                   Ex: 'Bot NgA5MTQ3YnY2ORc0NDE1MTBz.F9Nkww.j3k4YAGtb1-bD7Om9zXYr6wsmVj'
 
 Your Bandsintown API APP ID can be any string of your [choosing](http://www.bandsintown.com/api/authentication)
 
