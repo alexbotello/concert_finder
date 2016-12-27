@@ -3,8 +3,8 @@
 Uses the Bandsintown API to gather your specific band's concert data and a Discord bot to post data
 into a Discord channel of your choosing.                              
 
-Information on how to acquire your own Discord bot token can be found [HERE](https://discordapp.com/developers/docs/intro)
-Your Bandsintown API APP ID can be any string of your [choosing](http://www.bandsintown.com/api/authentication)
+Information on how to acquire your own Discord bot token can be found [HERE](https://discordapp.com/developers/docs/intro)     
+Your Bandsintown API APP ID can be any string of your [choosing](http://www.bandsintown.com/api/authentication)     
 Find the Discord channel ID by right clicking your chosen text channel in the Discord App and selecting 'Copy ID'
 
 Once you have your token it must be entered in `settings.py` with 'Bot' in front of it.
