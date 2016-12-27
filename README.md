@@ -2,7 +2,7 @@
 Be automatically notified on your mobile when you're favorite artists/bands are performing in your area
 
 Uses the Bandsintown API to gather your specific band's concert data and a Discord bot to post data
-into a Discord channel of your choosing. 
+into a Discord channel of your choosing.                              
 Information on how to acquire your own Discord bot token can be found [HERE](https://discordapp.com/developers/docs/intro)
 
 Once you have your token it must be entered in settings.py with 'Bot' in front of it.    
