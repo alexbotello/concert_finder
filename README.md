@@ -12,7 +12,7 @@ Your Bandsintown API APP ID can be any string of your [choosing](http://www.band
 
 Find the Discord channel ID by right clicking your chosen text channel in the Discord App and selecting 'Copy ID'
 
-Location string format must be full name of city followed by state abbreviation.
+Location string format must be full name of city followed by state abbreviation.    
 Ex: 'New York, NY' , 'Austin, TX' , 'Seattle, WA' , 'Orlando, FL'
 
 Be sure to download the Discord App on your smart phone for instant notifications
