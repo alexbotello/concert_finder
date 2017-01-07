@@ -1,5 +1,6 @@
 import logging
 import json
+import sys
 import time
 import requests
 import settings
@@ -38,14 +39,16 @@ def find_all_concerts():
         # Load JSON data from response
         json_data = json.loads(resp.text)
 
-        if json_data == []:
-            logging.warning('Found No Results For {}'.format(art))
-
+        old_result_found = 0
+        new_results_found = 0
         post_image = 1
         for event in json_data:
             # Query the database to compare current listing to any
             # that already exists
             listing = session.query(Concert).filter_by(c_id=event['id']).first()
+
+            if listing:
+                old_result_found += 1
 
             # If no listing is found
             if listing is None:
@@ -57,6 +60,7 @@ def find_all_concerts():
 
                 session.add(listing)
                 session.commit()
+                new_results_found += 1
 
                 if post_image == 1:
                     # Post picture of band/artist to discord channel
@@ -73,12 +77,24 @@ def find_all_concerts():
                                       event['formatted_datetime']}
                 buffers = {'content': '-' * 60}
 
-                post_to_discord(message)
-                time.sleep(1)
-                post_to_discord(buffers)
-                time.sleep(3)
+                try:
+                    post_to_discord(message)
+                    time.sleep(1)
+                    post_to_discord(buffers)
+                    time.sleep(3)
+                except Exception as exc:
+                    print('An error occured while posting to discord',
+                          sys.exc_info())
                 # Change post_image to False to avoid repeated image posts
                 post_image -= 1
+
+        if json_data == []:
+            logging.warning('Found No Results For {}'.format(art))
+
+        if json_data:
+            logging.warning('Found {} posted result '
+                           'and {} new results for {}'.format(old_result_found,
+                                                       new_results_found, art))
 
 
 class ApiError(Exception):
