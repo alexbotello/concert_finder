@@ -1,20 +1,23 @@
 import time
 import sys
 import settings
+import logging
 from scrape import find_all_concerts
 
 
 if __name__ == "__main__":
+    logging.getLogger().setLevel(logging.INFO)
+
     while True:
-        print("Starting Scrape Cycle {}".format(time.ctime()))
+        logging.info("Starting Scrape Cycle {}".format(time.ctime()))
         try:
             find_all_concerts()
         except KeyboardInterrupt:
-            print("Program Exiting....")
+            logging.warning("Program Exiting....")
         except Exception as exc:
-            print('An Error Occured While Scraping:', sys.exc_info())
+            logging.warning('An Error Occured While Scraping:', sys.exc_info())
         else:
-            print('Successful Scrape {}'.format(time.ctime()))
-            print('\n\n')
+            logging.info('Successful Scrape {}'.format(time.ctime()))
+            logging.info('\n\n')
         # Every 24 hours
         time.sleep(60 * 1440)

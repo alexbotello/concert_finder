@@ -1,9 +1,9 @@
-import logging
 import json
 import sys
 import time
 import requests
 import settings
+import logging
 from sqlalchemy.orm import sessionmaker
 from models import Concert, create_concert_table, db_connect
 from utils import post_to_discord
@@ -35,7 +35,6 @@ def find_all_concerts():
         if resp.status_code != 200:
             raise ApiError('{} response code'.format(resp.status_code))
 
-        logging.info("Successful Request")
         # Load JSON data from response
         json_data = json.loads(resp.text)
 
@@ -83,19 +82,19 @@ def find_all_concerts():
                     post_to_discord(buffers)
                     time.sleep(3)
                 except Exception as exc:
-                    print('An error occured while posting to discord',
+                    logging.warning('An error occured while posting to discord',
                           sys.exc_info())
                 # Change post_image to False to avoid repeated image posts
                 post_image -= 1
 
         if json_data == []:
-            logging.warning('Found No Results For {}'.format(art))
+            logging.info('Found No Results For {}'.format(art))
 
         if json_data:
-            logging.warning('Found {} posted result '
-                           'and {} new results for {}'.format(old_result_found,
-                                                       new_results_found, art))
-
+            logging.info('Found {} posted result and '
+                         '{} new results for {}'.format(old_result_found,
+                                                        new_results_found, art))
+    logging.info("Scrape was completed")
 
 class ApiError(Exception):
     pass
